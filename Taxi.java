@@ -24,27 +24,35 @@ public class Taxi extends PublicTransport{
         System.out.println("상태 = " + state);
 
     }
+    void startDrive() {
+        if (fuel >= 10) {
+            System.out.println("운행 가능합니다.");
+        }
+    }
+
 
     void inPeople(int num, String location, int km) {
-        maxPeople -= num;
-        destination = location;
-        destinationDistance = km;
+        if (fuel >= 10 && state == "일반"){
+            maxPeople -= num;
+            destination = location;
+            destinationDistance = km;
 
-        state = "운행중";
-        payment = (km - basicDistance) * distancePay + basicPay;
+            state = "운행중";
+            payment = (km - basicDistance) * distancePay + basicPay;
 
-        if (maxPeople > 0) {
-            System.out.println("탑승 승객 수 = " + num);
-            System.out.println("잔여 승객 수 = " + maxPeople);
-            System.out.println("기본 요금 확인 = " + basicPay);
-            System.out.println("목적지 = " + destination);
-            System.out.println("목적지까지 거리 = " + destinationDistance + "km");
-            System.out.println("지불할 요금 = " + payment);
-            System.out.println("상태 = " + state);
+            if (maxPeople > 0) {
+                System.out.println("탑승 승객 수 = " + num);
+                System.out.println("잔여 승객 수 = " + maxPeople);
+                System.out.println("기본 요금 확인 = " + basicPay);
+                System.out.println("목적지 = " + destination);
+                System.out.println("목적지까지 거리 = " + destinationDistance + "km");
+                System.out.println("지불할 요금 = " + payment);
+                System.out.println("상태 = " + state);
 
-        } else {
-            System.out.println("최대 승객 수 초과");
-            maxPeople += num;
+            } else {
+                System.out.println("최대 승객 수 초과");
+                maxPeople += num;
+            }
         }
     }
 
@@ -54,6 +62,7 @@ public class Taxi extends PublicTransport{
         if (maxPeople < 0) {
             System.out.println("최대 승객 수 초과");
             maxPeople = 4;
+            state = "일반";
         }
     }
 

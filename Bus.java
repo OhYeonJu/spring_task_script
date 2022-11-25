@@ -15,19 +15,24 @@ public class Bus extends PublicTransport{
     }
 
     void inPeople(int num) {
-        maxPeople -= num;
-        currentPeople += num;
+        if (state == "운행"){
+            maxPeople -= num;
+            currentPeople += num;
 
-        if (maxPeople > 0) {
-            System.out.println("탑승 승객 수 = " + num);
-            System.out.println("잔여 승객 수 = " + maxPeople);
-            System.out.println("요금 확인 = " +  (pay * num));
+            if (maxPeople > 0) {
+                System.out.println("탑승 승객 수 = " + num);
+                System.out.println("잔여 승객 수 = " + maxPeople);
+                System.out.println("요금 확인 = " +  (pay * num));
 
+            } else {
+                System.out.println("최대 승객 수 초과");
+                maxPeople += num;
+                currentPeople -= num;
+            }
         } else {
-            System.out.println("최대 승객 수 초과");
-            maxPeople += num;
-            currentPeople -= num;
+            System.out.println("운행 중이 아닙니다.");
         }
+
     }
 
     String changeState(String busState) {

@@ -10,9 +10,8 @@ public class PublicTransport {
 
     }
 
-    int getChangeSpeed() {
+    void setChangeSpeed() {
 
-        return changeSpeed;
     }
 
     String changeState() {
